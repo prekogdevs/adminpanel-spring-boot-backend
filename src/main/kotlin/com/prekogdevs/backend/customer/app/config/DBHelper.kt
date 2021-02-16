@@ -21,9 +21,9 @@ class DBHelper(private val customerRepository: CustomerRepository) : CommandLine
     @Throws(Exception::class)
     override fun run(vararg args: String?) {
         val items = listOf(
-                Customer(1, "Kis Elemér", "kiselemer@myaddress.com", "NO_PIC"),
-                Customer(2, "Közepes Elemér", "kozepeselemer@myaddress.com", "NO_PIC"),
-                Customer(3, "Nagy Elemér", "nagyelemer@myaddress.com", "NO_PIC")
+                Customer(1, "Kis Elemér", "kiselemer@myaddress.com"),
+                Customer(2, "Közepes Elemér", "kozepeselemer@myaddress.com"),
+                Customer(3, "Nagy Elemér", "nagyelemer@myaddress.com")
         )
         customerRepository.saveAll(items)
     }
