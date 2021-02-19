@@ -10,5 +10,5 @@ data class Customer(
         var name: String = "",
         var email: String = "",
         @Lob
-        val avatar : String = ""
+        val avatar: String = ""
 )

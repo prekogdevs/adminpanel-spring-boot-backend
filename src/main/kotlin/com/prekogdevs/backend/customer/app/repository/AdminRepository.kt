@@ -1,10 +1,10 @@
 package com.prekogdevs.backend.customer.app.repository
 
-import com.prekogdevs.backend.customer.app.model.Customer
+import com.prekogdevs.backend.customer.app.model.Admin
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface CustomerRepository : CrudRepository<Customer, Long> {
-    fun findCustomerById(id : Long) : Customer?
+interface AdminRepository : CrudRepository<Admin, Long> {
+    fun findByUsername(name: String): Admin?
 }

@@ -2,8 +2,9 @@ package com.prekogdevs.backend.customer.app.service
 
 import com.prekogdevs.backend.customer.app.model.Customer
 import com.prekogdevs.backend.customer.app.repository.CustomerRepository
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
-import java.util.*
 
 @Service
 class CustomerService(private val customerRepository: CustomerRepository) {
@@ -11,11 +12,23 @@ class CustomerService(private val customerRepository: CustomerRepository) {
         return customerRepository.findAll()
     }
 
-    fun addCustomer(customer: Customer): Customer {
-        return customerRepository.save(customer)
+    fun addCustomer(customer: Customer): ResponseEntity<String> {
+        val newCustomer = customerRepository.save(customer)
+        return ResponseEntity(
+                "Customer with ${newCustomer.name} has been added",
+                HttpStatus.OK)
     }
 
-    fun deleteCustomer(id: Long): Optional<Customer> {
-        return customerRepository.findById(id)
+    fun deleteCustomer(id: Long): ResponseEntity<String> {
+        return when (val customer = customerRepository.findCustomerById(id)) {
+            null -> ResponseEntity(
+                    "Customer with ${customer?.name} name not found",
+                    HttpStatus.NOT_FOUND)
+
+            else -> ResponseEntity(
+                    "Customer with ${customer.name} has been deleted",
+                    HttpStatus.OK)
+
+        }
     }
 }
