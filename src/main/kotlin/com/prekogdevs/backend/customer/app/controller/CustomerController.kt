@@ -2,7 +2,6 @@ package com.prekogdevs.backend.customer.app.controller
 
 import com.prekogdevs.backend.customer.app.model.Customer
 import com.prekogdevs.backend.customer.app.service.CustomerService
-import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -14,13 +13,13 @@ class CustomerController(private val customerService: CustomerService) {
     }
 
     @PostMapping("/register")
-    fun addCustomer(@RequestBody customer: Customer): ResponseEntity<String> {
-        return customerService.addCustomer(customer)
-    }
+    fun addCustomer(@RequestBody customer: Customer) =
+         customerService.addCustomer(customer)
+
 
     @DeleteMapping("/{id}")
-    fun deleteCustomer(@PathVariable("id") id: Long): ResponseEntity<String> {
-        return customerService.deleteCustomer(id)
-    }
+    fun deleteCustomer(@PathVariable("id") id: Long) =
+        customerService.deleteCustomer(id)
+
 }
 
