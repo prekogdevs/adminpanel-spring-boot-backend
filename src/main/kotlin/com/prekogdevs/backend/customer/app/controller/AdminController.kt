@@ -14,7 +14,7 @@ class AdminController(private val adminService: AdminService) {
     }
 
     @PostMapping("/login")
-    fun login(@RequestBody admin: Admin): Admin? {
+    fun login(@RequestBody admin: Admin): Boolean? {
         return adminService.login(admin)
     }
 }

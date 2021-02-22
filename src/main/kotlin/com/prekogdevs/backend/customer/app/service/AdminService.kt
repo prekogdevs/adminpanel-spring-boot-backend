@@ -12,15 +12,15 @@ class AdminService(private val adminRepository: AdminRepository) {
         return adminRepository.findAll()
     }
 
-    fun login(admin: Admin): Admin? {
+    fun login(admin: Admin): Boolean? {
         val potentialAdmin = adminRepository.findByUsername(admin.username)
         val passwordEncoder = BCryptPasswordEncoder()
+        var isSuccessfulLogin : Boolean? = null
         potentialAdmin?.let {
-            return when (passwordEncoder.matches(admin.password, potentialAdmin.password)) {
-                true -> potentialAdmin
-                false -> null
+            if(passwordEncoder.matches(admin.password, potentialAdmin.password)) {
+                isSuccessfulLogin = true
             }
         }
-        return null
+        return isSuccessfulLogin
     }
 }
