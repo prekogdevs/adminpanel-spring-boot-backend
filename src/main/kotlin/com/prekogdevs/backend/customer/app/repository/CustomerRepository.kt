@@ -5,6 +5,4 @@ import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface CustomerRepository : CrudRepository<Customer, Long> {
-    fun findCustomerById(id : Long) : Customer?
-}
+interface CustomerRepository : CrudRepository<Customer, Long>

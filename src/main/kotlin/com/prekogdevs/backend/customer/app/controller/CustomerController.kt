@@ -17,7 +17,7 @@ class CustomerController(private val customerService: CustomerService) {
          customerService.addCustomer(customer)
 
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     fun deleteCustomer(@PathVariable("id") id: Long) =
         customerService.deleteCustomer(id)
 
